@@ -1,24 +1,17 @@
 import React from 'react'
+import './Todo.css'
 
-const TodoForm = ({ addTodo }) => {
-  // Input tracker
-  let input
-
+const TodoForm = props => {
   return (
     <div className='formContainer'>
       <input
-        ref={node => {
-          input = node
-        }}
+        onChange={props.changeTodo}
+        type='text'
+        placeholder='Need to do something?'
+        value={props.value}
       />
-      <button
-        onClick={() => {
-          addTodo(input.value)
-          input.value = ''
-        }}
-      >
-        +
-      </button>
+      <button onClick={props.addTodo}>+</button>
+      <button onClick={props.removeTodos}>-</button>
     </div>
   )
 }
