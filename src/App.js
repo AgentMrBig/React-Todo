@@ -1,4 +1,5 @@
 import React from 'react'
+
 import TodoForm from './/components/TodoComponents/TodoForm'
 import TodoList from './/components/TodoComponents/TodoList'
 
@@ -13,8 +14,45 @@ class App extends React.Component {
     this.state = {
       todos: [],
       todo: '',
-      todoCount: 0
+      todoCount: 0,
+      message: '0'
     }
+  }
+
+  // custom fades
+
+  fadeIn = element => {
+    var fade_in_from = 0
+    var fade_out_from = 10
+    var target = document.getElementById(element)
+    target.style.display = 'block'
+    var newSetting = fade_in_from / 10
+    target.style.opacity = newSetting
+    fade_in_from++
+    if (fade_in_from == 10) {
+      target.style.opacity = 1
+      clearTimeout(loopTimer)
+      fade_in_from = 0
+      return false
+    }
+    var loopTimer = setTimeout(this.fadeIn(element), 50)
+  }
+
+  fadeOut = element => {
+    var fade_in_from = 0
+    var fade_out_from = 10
+    var target = document.getElementById(element)
+    target.style.display = 'block'
+    var newSetting = fade_out_from / 10
+    target.style.opacity = newSetting
+    fade_out_from++
+    if (fade_out_from == 0) {
+      target.style.opacity = 1
+      clearTimeout(loopTimer)
+      fade_out_from = 10
+      return false
+    }
+    var loopTimer = setTimeout(this.fadeOut(element), 50)
   }
 
   // Add Todo handler
@@ -28,12 +66,27 @@ class App extends React.Component {
       id: Date.now()
     }
 
-    // update state with new list and reset newItem input
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-      todo: '',
-      todoCount: this.state.todos.length
-    })
+    if (this.state.todo === '') {
+      this.setState({
+        message: `You can't do nothing, type a task before trying to add it to the list!`
+      })
+      document.getElementById('msg').className = 'eMsg'
+      setTimeout(() => {
+        this.setState({
+          message: this.state.todoCount,
+          todos: this.state.todos
+        })
+        document.getElementById('msg').className = ''
+      }, 1000)
+    } else if (this.state.todo != '') {
+      // update state with new list and reset todo input
+      this.setState({
+        todos: [...this.state.todos, newTodo],
+        todo: '',
+        todoCount: this.state.todos.length,
+        message: this.state.todoCount
+      })
+    }
 
     console.log(this.state.todos)
   }
@@ -41,9 +94,7 @@ class App extends React.Component {
   // change todo
   changeTodo = e => {
     this.setState({ todo: e.target.value })
-    console.log(`changeTodo: e.target.name:${e.target.name}
-      e.target.value:${e.target.value}
-    `)
+    console.log(`e.target.value:${e.target.value}`)
     console.log(this.state.todo)
   }
 
@@ -71,21 +122,20 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <h2>Welcome to your Todo App! Todo's: {this.state.todos.length}</h2>
-
+      <div className='mainPanel gradGrey'>
+        <h2 id='msg' className=''>
+          Welcome to your Todo App! Todo's:{' '}
+          <span id='msgSpan'>{this.state.message}</span>
+        </h2>
         <TodoForm
           value={this.state.todo}
           changeTodo={this.changeTodo}
           addTodo={this.addTodo}
           removeTodos={this.removeTodos}
         />
-        <button
-          onClick={() => {
-            console.log(this.state.todos)
-          }}
-        >
-          state.todos
+        <hr />
+        <button className='delBtn' onClick={this.removeTodos}>
+          Clear Completed Todo's
         </button>
         <TodoList
           toggleComplete={this.toggleComplete}

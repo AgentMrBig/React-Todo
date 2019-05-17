@@ -3,15 +3,16 @@ import './Todo.css'
 
 const TodoForm = props => {
   return (
-    <div className='formContainer'>
+    <div className='inputSyles'>
       <input
         onChange={props.changeTodo}
         type='text'
         placeholder='Need to do something?'
         value={props.value}
       />
-      <button onClick={props.addTodo}>+</button>
-      <button onClick={props.removeTodos}>-</button>
+      <button className='addBtn' onClick={props.addTodo}>
+        +
+      </button>
     </div>
   )
 }

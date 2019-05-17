@@ -1,4 +1,94 @@
-.formContainer {
-    display: flex;
-    border: solid 1px red;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    z-index: -10;
 }
+
+/* Background gradient on body element*/
+.gradBg {
+    background-color: #757575;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjODA4MDgwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiM1YjViNWIiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjY1NTk5OTk5OTk5OTk5OTkiLz48c3RvcCBzdG9wLWNvbG9yPSIjYTlhOWE5IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0, rgb(128, 128, 128)), color-stop(0.656, rgb(91, 91, 91)), color-stop(1, rgb(169, 169, 169)));
+    /* Android 2.3 */
+    background-image: -webkit-repeating-linear-gradient(top, rgb(128, 128, 128) 0%, rgb(91, 91, 91) 65.6%, rgb(169, 169, 169) 100%);
+    /* IE10+ */
+    background-image: repeating-linear-gradient(to bottom, rgb(128, 128, 128) 0%, rgb(91, 91, 91) 65.6%, rgb(169, 169, 169) 100%);
+    background-image: -ms-repeating-linear-gradient(top, rgb(128, 128, 128) 0%, rgb(91, 91, 91) 65.6%, rgb(169, 169, 169) 100%);
+}
+
+/* light grey gradient on the panel with todo app ui*/
+.gradGrey {
+    background-color: #e3e3e3;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZTJlMmUyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNkYmRiZGIiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjUiLz48c3RvcCBzdG9wLWNvbG9yPSIjZDFkMWQxIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41MSIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0, rgb(226, 226, 226)), color-stop(0.5, rgb(219, 219, 219)), color-stop(0.51, rgb(209, 209, 209)), color-stop(1, rgb(254, 254, 254)));
+    /* Android 2.3 */
+    background-image: -webkit-repeating-linear-gradient(top, rgb(226, 226, 226) 0%, rgb(219, 219, 219) 50%, rgb(209, 209, 209) 51%, rgb(254, 254, 254) 100%);
+    /* IE10+ */
+    background-image: repeating-linear-gradient(to bottom, rgb(226, 226, 226) 0%, rgb(219, 219, 219) 50%, rgb(209, 209, 209) 51%, rgb(254, 254, 254) 100%);
+    background-image: -ms-repeating-linear-gradient(top, rgb(226, 226, 226) 0%, rgb(219, 219, 219) 50%, rgb(209, 209, 209) 51%, rgb(254, 254, 254) 100%);
+}
+
+input {
+    border-radius: 5px;
+    height: 30px;
+    font-size: 17pt;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inputSyles {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    /* border: solid 1px red; */
+}
+
+.addBtn {
+    background-color: lightgreen;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 20pt;
+    width: 25%;
+}
+
+.eMsg {
+    color: red;
+}
+
+.delBtn {
+    background-color: lightcoral;
+    flex: 1 0 0;
+    align-self: center;
+    align-content: center;
+    width: 100%;
+    height: 3rem;
+    margin: auto;
+    color: white;
+    font-size: 20pt;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.mainPanel {
+    width: 320px;
+    height: 400px;
+    color: #000000;
+    top: 50%;
+    left: 50%;
+    padding: 60px 30px;
+    padding-top: 10px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border-radius: 3%;
+    box-shadow: 8px 8px 50px #000;
+    display: flexbox;
+    justify-content: center;
+    /* border: solid 1px green; */
+    width: 40%;
+}
+
+.todoHost {}
