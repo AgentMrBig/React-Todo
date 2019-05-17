@@ -65,8 +65,8 @@ class App extends React.Component {
   removeTodos = e => {
     e.preventDefault()
     console.log(this.state.todos)
-    // let doneTodos = this.state.todos.filter(todo => !todo.completed)
-    // this.setState({ todos: doneTodos })
+    let doneTodos = this.state.todos.filter(todo => !todo.completed)
+    this.setState({ todos: doneTodos })
   }
 
   render () {
