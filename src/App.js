@@ -21,7 +21,7 @@ class App extends React.Component {
   addTodo = e => {
     e.preventDefault()
     // create item with unique id
-    const newTodo = {
+    var newTodo = {
       // value: this.state.newItem.slice()
       task: this.state.todo,
       completed: false,
@@ -31,7 +31,7 @@ class App extends React.Component {
     // update state with new list and reset newItem input
     this.setState({
       todos: [...this.state.todos, newTodo],
-      newItem: '',
+      todo: '',
       todoCount: this.state.todos.length
     })
 
@@ -44,6 +44,7 @@ class App extends React.Component {
     console.log(`changeTodo: e.target.name:${e.target.name}
       e.target.value:${e.target.value}
     `)
+    console.log(this.state.todo)
   }
 
   // toggleComplete
@@ -58,18 +59,20 @@ class App extends React.Component {
       }
     })
     this.setState({ todos })
+    console.log(this.state.todos)
   }
   // remove todo handler
-  removeTodos (e) {
+  removeTodos = e => {
     e.preventDefault()
-    let todos = this.state.todos.filter(todo => !todo.completed)
-    this.setState({ todos })
+    console.log(this.state.todos)
+    // let doneTodos = this.state.todos.filter(todo => !todo.completed)
+    // this.setState({ todos: doneTodos })
   }
 
   render () {
     return (
       <div>
-        <h2>Welcome to your Todo App! Todo's: {this.state.todoCount}</h2>
+        <h2>Welcome to your Todo App! Todo's: {this.state.todos.length}</h2>
 
         <TodoForm
           value={this.state.todo}
@@ -77,7 +80,13 @@ class App extends React.Component {
           addTodo={this.addTodo}
           removeTodos={this.removeTodos}
         />
-
+        <button
+          onClick={() => {
+            console.log(this.state.todos)
+          }}
+        >
+          state.todos
+        </button>
         <TodoList
           toggleComplete={this.toggleComplete}
           todos={this.state.todos}
